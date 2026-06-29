@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Presupuesto - eCommerce inicial | Infinito Libros</title>
+
+  <style>
+    :root {
+      --primary: #2f3a2f;
+      --primary-2: #40533a;
+      --secondary: #6f7d5c;
+      --accent: #b89b5e;
+      --bg: #f7f3ea;
+      --paper: #ffffff;
+      --text: #252525;
+      --muted: #6f6f6f;
+      --line: #e2ded4;
+      --soft: #faf8f2;
+      --success: #f6faf4;
+      --success-line: #d9e8d0;
+      --warning: #fffaf0;
+      --warning-line: #ead6a7;
+      --blue-soft: #f3f7f6;
+      --blue-line: #d6e4df;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 8% 12%, rgba(111, 125, 92, .18), transparent 24rem),
+        radial-gradient(circle at 92% 8%, rgba(184, 155, 94, .12), transparent 25rem),
+        var(--bg);
+      color: var(--text);
+      font-family: "Segoe UI", Arial, sans-serif;
+      line-height: 1.55;
+    }
+
+    .page { max-width: 980px; margin: 40px auto; padding: 40px; background: var(--paper); border-radius: 18px; box-shadow: 0 20px 60px rgba(0,0,0,.08); }
+    .header { display:flex; justify-content:space-between; gap:32px; padding-bottom:28px; border-bottom:1px solid var(--line); }
+    .brand h1 { margin:0; color:var(--primary); font-size:32px; letter-spacing:-.5px; line-height:1.15; }
+    .brand p { margin:8px 0 0; color:var(--muted); font-size:15px; }
+    .quote-box { text-align:right; min-width:240px; }
+    .quote-box .label { color:var(--muted); font-size:13px; text-transform:uppercase; letter-spacing:1px; }
+    .quote-box .number { margin-top:6px; color:var(--primary); font-size:20px; font-weight:700; }
+    .section { margin-top:34px; }
+    .section h2 { margin:0 0 16px; color:var(--primary); font-size:22px; border-left:4px solid var(--accent); padding-left:12px; }
+    .info-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; }
+    .info-card { background:var(--soft); border:1px solid var(--line); border-radius:12px; padding:16px; }
+    .info-card strong { display:block; color:var(--primary); margin-bottom:4px; }
+    .info-card span { color:var(--muted); }
+    .summary { background:linear-gradient(135deg,#2f3a2f,#536346); color:#fff; border-radius:16px; padding:28px; margin-top:34px; position:relative; overflow:hidden; }
+    .summary:after { content:""; position:absolute; right:-80px; top:-80px; width:220px; height:220px; border-radius:999px; background:rgba(255,255,255,.08); }
+    .summary h2 { margin:0 0 10px; color:#fff; border:none; padding:0; position:relative; z-index:1; }
+    .summary p { margin:0; color:rgba(255,255,255,.88); position:relative; z-index:1; }
+    .price { margin-top:22px; font-size:40px; font-weight:800; color:#fff; position:relative; z-index:1; }
+    .price small { display:block; margin-top:4px; font-size:14px; font-weight:400; color:rgba(255,255,255,.75); }
+    .badge { display:inline-block; margin-bottom:12px; padding:6px 12px; border-radius:999px; background:rgba(184,155,94,.18); color:#fff6d8; border:1px solid rgba(255,255,255,.18); font-size:13px; font-weight:700; letter-spacing:.2px; position:relative; z-index:1; }
+    ul { margin:0; padding-left:20px; } li { margin-bottom:8px; }
+    .two-columns { display:grid; grid-template-columns:repeat(2,1fr); gap:22px; }
+    .three-columns { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+    .box { border:1px solid var(--line); border-radius:14px; padding:20px; background:#fff; }
+    .box h3 { margin:0 0 12px; color:var(--primary); font-size:18px; }
+    .box.warning { background:var(--warning); border-color:var(--warning-line); }
+    .box.success { background:var(--success); border-color:var(--success-line); }
+    .box.info { background:var(--blue-soft); border-color:var(--blue-line); }
+    .feature-card { background:#fff; border:1px solid var(--line); border-radius:14px; padding:18px; min-height:100%; }
+    .feature-card .tag { display:inline-block; margin-bottom:10px; padding:5px 10px; border-radius:999px; background:var(--soft); color:var(--secondary); font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.5px; }
+    .feature-card h3 { margin:0 0 8px; color:var(--primary); font-size:18px; }
+    .feature-card p { margin:0; color:var(--muted); font-size:14px; }
+    table { width:100%; border-collapse:collapse; margin-top:12px; overflow:hidden; border-radius:12px; border:1px solid var(--line); }
+    th,td { padding:14px; text-align:left; border-bottom:1px solid var(--line); vertical-align:top; }
+    th { background:var(--primary); color:#fff; font-weight:600; }
+    tr:last-child td { border-bottom:none; }
+    .money { white-space:nowrap; text-align:right; font-weight:700; }
+    .total-row td { font-size:18px; font-weight:800; color:var(--primary); background:var(--soft); }
+    .terms { font-size:14px; color:var(--muted); }
+    .note { margin-top:14px; padding:14px 16px; border-radius:12px; background:var(--soft); border:1px solid var(--line); color:var(--muted); font-size:14px; }
+    .footer { margin-top:42px; padding-top:24px; border-top:1px solid var(--line); display:flex; justify-content:space-between; gap:24px; color:var(--muted); font-size:14px; }
+    .signature { margin-top:50px; display:grid; grid-template-columns:repeat(2,1fr); gap:48px; }
+    .signature div { border-top:1px solid var(--line); padding-top:10px; color:var(--muted); font-size:14px; text-align:center; }
+    .print-button { position:fixed; right:24px; bottom:24px; border:none; background:var(--primary); color:#fff; padding:14px 20px; border-radius:999px; font-weight:700; cursor:pointer; box-shadow:0 12px 28px rgba(0,0,0,.18); z-index:5; }
+    .print-button:hover { background:#1f281f; }
+
+    @media (max-width:860px){ .three-columns{grid-template-columns:1fr;} }
+    @media (max-width:760px){ .page{margin:0; padding:24px; border-radius:0;} .header,.footer{flex-direction:column;} .quote-box{text-align:left;} .info-grid,.two-columns,.signature{grid-template-columns:1fr;} .price{font-size:34px;} th,td{padding:12px;} .money{text-align:left;} }
+    @media print{
+      @page { size:A4; margin:12mm; }
+      * { -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; color-adjust:exact !important; }
+      html,body{background:#f7f3ea !important;} body{margin:0 !important;}
+      .page{max-width:none !important; width:100% !important; margin:0 auto !important; padding:30px !important; background:#fff !important; border-radius:18px !important; box-shadow:none !important;}
+      .summary{background:#3f5139 !important; color:#fff !important; border-radius:16px !important;}
+      .summary h2,.summary p,.summary .price,.summary small{color:#fff !important;}
+      .info-card,.feature-card,.box,.note{border:1px solid #e2ded4 !important;}
+      .info-card,.note{background:#faf8f2 !important;} .box.success{background:#f6faf4 !important; border-color:#d9e8d0 !important;} .box.warning{background:#fffaf0 !important; border-color:#ead6a7 !important;} .box.info{background:#f3f7f6 !important; border-color:#d6e4df !important;}
+      th{background:#2f3a2f !important; color:#fff !important;} .total-row td{background:#faf8f2 !important; color:#2f3a2f !important;}
+      .section,.summary,.box,.info-card,.feature-card,table{break-inside:avoid; page-break-inside:avoid;} .print-button{display:none !important;}
+    }
+  </style>
+</head>
+<body>
+  <button class="print-button" onclick="window.print()">Guardar / Imprimir PDF</button>
+
+  <main class="page">
+    <header class="header">
+      <div class="brand">
+        <h1>Presupuesto de eCommerce inicial</h1>
+        <p>Sitio web con tienda online inicial, catálogo administrable, carrito, checkout, Mercado Pago Checkout Pro y actualización por ISBN.</p>
+      </div>
+      <div class="quote-box">
+        <div class="label">Presupuesto</div>
+        <div class="number">Infinito Libros</div>
+        <p>Fecha: 29/06/2026</p>
+      </div>
+    </header>
+
+    <section class="section">
+      <div class="info-grid">
+        <div class="info-card"><strong>Cliente</strong><span>Infinito Libros</span></div>
+        <div class="info-card"><strong>Proveedor</strong><span>Gonzalo Sanchez</span></div>
+        <div class="info-card"><strong>Tipo de proyecto</strong><span>Página web comercial con eCommerce inicial.</span></div>
+        <div class="info-card"><strong>Modalidad</strong><span>Desarrollo único con catálogo, carrito, checkout, Mercado Pago Checkout Pro y herramientas de actualización.</span></div>
+      </div>
+    </section>
+
+    <section class="summary">
+      <span class="badge">Propuesta eCommerce inicial</span>
+      <h2>Propuesta económica</h2>
+      <p>
+        Desarrollo de una tienda online inicial para presentar la librería, vender productos mediante carrito y checkout básico,
+        administrar el catálogo desde archivos estructurados y actualizar precios por ISBN.
+      </p>
+      <div class="price">USD 1.200<small>No incluye hosting, dominio, mantenimiento mensual, comisiones de Mercado Pago ni costos de envío.</small></div>
+    </section>
+
+    <section class="section">
+      <h2>Resumen de la solución</h2>
+      <div class="three-columns">
+        <div class="feature-card"><span class="tag">Tienda</span><h3>eCommerce inicial</h3><p>Sitio moderno y responsive con catálogo, carrito de compras y checkout básico.</p></div>
+        <div class="feature-card"><span class="tag">Catálogo</span><h3>Carga y precios</h3><p>Carga masiva inicial desde plantilla y actualización mensual de precios por ISBN.</p></div>
+        <div class="feature-card"><span class="tag">Pagos</span><h3>Mercado Pago Checkout Pro</h3><p>Integración inicial mediante redirección al entorno seguro de Mercado Pago.</p></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Alcance del desarrollo</h2>
+      <div class="two-columns">
+        <div class="box success">
+          <h3>Incluye</h3>
+          <ul>
+            <li>Diseño visual profesional adaptado a una librería.</li>
+            <li>Desarrollo responsive para celular, tablet y computadora.</li>
+            <li>Página de inicio con presentación del negocio.</li>
+            <li>Tienda con catálogo digital navegable.</li>
+            <li>Buscador, filtros básicos y paginación para catálogos grandes.</li>
+            <li>Ficha de detalle para cada libro o producto.</li>
+            <li>Carrito de compras inicial con cantidades y totales.</li>
+            <li>Checkout básico con datos del comprador y método de entrega.</li>
+            <li>Control básico de stock administrado manualmente por la librería.</li>
+            <li>Integración inicial con Mercado Pago Checkout Pro.</li>
+            <li>Plantilla para carga masiva inicial del catálogo.</li>
+            <li>Actualizador mensual de precios por ISBN.</li>
+            <li>Sección de contacto, ubicación y redes sociales.</li>
+            <li>SEO básico y publicación inicial en el hosting definido.</li>
+            <li>Capacitación breve para operar catálogo, precios y pedidos.</li>
+          </ul>
+        </div>
+        <div class="box info">
+          <h3>Criterios operativos</h3>
+          <ul>
+            <li>El stock publicado será administrado manualmente por el equipo de la librería.</li>
+            <li>Cuando se realice una venta en el local, el personal deberá actualizar el stock en el sistema para mantener la disponibilidad real.</li>
+            <li>Los envíos pueden comenzar como “a coordinar” para no encarecer la primera versión.</li>
+            <li>La facturación se realiza manualmente por los medios habituales de la librería.</li>
+            <li>El sistema queda preparado para futuras mejoras: sincronización automática de stock, usuarios, cupones o logística.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Detalle económico</h2>
+      <table>
+        <thead><tr><th>Concepto</th><th>Detalle</th><th>Importe</th></tr></thead>
+        <tbody>
+          <tr><td>Diseño y desarrollo de tienda online inicial</td><td>Sitio responsive con inicio, tienda, fichas de producto, contacto, ubicación, redes sociales y estructura preparada para venta online.</td><td class="money">USD 500</td></tr>
+          <tr><td>Catálogo, carga masiva y actualización por ISBN</td><td>Plantilla de carga inicial, importación del catálogo entregado por el cliente y actualizador mensual de precios por ISBN.</td><td class="money">USD 250</td></tr>
+          <tr><td>Carrito de compras y checkout básico</td><td>Agregar/quitar productos, cálculo de totales, datos del comprador, retiro en local o envío a coordinar y generación de pedido.</td><td class="money">USD 300</td></tr>
+          <tr><td>Integración con Mercado Pago Checkout Pro</td><td>Configuración inicial del flujo de pago mediante redirección al entorno seguro de Mercado Pago, con medios disponibles como débito, crédito y saldo en cuenta según configuración de Mercado Pago.</td><td class="money">USD 150</td></tr>
+          <tr class="total-row"><td colspan="2">Total del proyecto</td><td class="money">USD 1.200</td></tr>
+        </tbody>
+      </table>
+      <div class="note">El importe corresponde al desarrollo inicial detallado. Funcionalidades no especificadas, integraciones externas avanzadas o ampliaciones futuras se cotizan por separado.</div>
+    </section>
+
+    <section class="section">
+      <h2>No incluye</h2>
+      <div class="box warning">
+        <ul>
+          <li>Facturación electrónica automática o integración directa con ARCA.</li>
+          <li>Integración logística automática con correo, generación de etiquetas o seguimiento de envíos.</li>
+          <li>Sincronización automática en tiempo real con ERP, proveedores externos o ventas del local físico.</li>
+          <li>Panel administrativo avanzado, usuarios internos, roles complejos o reportes de gestión.</li>
+          <li>Registro de clientes, historial de compras, cupones, puntos o programas de fidelización.</li>
+          <li>Búsqueda, descarga, edición o carga manual de imágenes de libros.</li>
+          <li>Limpieza avanzada, normalización editorial o corrección masiva de datos del Excel.</li>
+          <li>Redacción profesional extensa de textos comerciales.</li>
+          <li>Mantenimiento mensual posterior a la entrega.</li>
+          <li>Costos de dominio, hosting, correos corporativos, certificados, servicios pagos o plugins.</li>
+          <li>Comisiones de Mercado Pago, costos de envío, impuestos o gastos propios de la operación comercial.</li><li>Configuración avanzada de cuotas, promociones bancarias, conciliación automática o múltiples pasarelas de pago.</li><li>Integración con MODO, Payway u otros medios de pago adicionales.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Forma de pago</h2>
+      <div class="box"><ul><li><strong>50% al aprobar el presupuesto:</strong> USD 600 para iniciar el desarrollo.</li><li><strong>50% antes de la publicación final:</strong> USD 600 contra entrega del sitio terminado.</li><li>El sitio será publicado una vez acreditado el pago final.</li></ul></div>
+    </section>
+
+    <section class="section">
+      <h2>Plazo estimado de entrega</h2>
+      <div class="box"><p>El plazo estimado de desarrollo es de <strong>25 a 35 días hábiles</strong>, contados desde la aprobación del presupuesto, la acreditación del anticipo y la entrega del material necesario por parte del cliente.</p><p class="terms">El plazo puede modificarse si se producen demoras en la entrega de textos, imágenes, catálogo, credenciales técnicas, datos fiscales, cuenta de pago o definiciones necesarias para avanzar.</p></div>
+    </section>
+
+    <section class="section">
+      <h2>Responsabilidades del cliente</h2>
+      <div class="box">
+        <ul>
+          <li>Entregar logo, colores de marca o referencias visuales disponibles.</li>
+          <li>Enviar textos básicos: presentación, horarios, dirección y datos de contacto.</li>
+          <li>Preparar el archivo de catálogo inicial respetando la plantilla acordada.</li>
+          <li>Utilizar ISBN como identificador principal para la actualización de precios.</li>
+          <li>Actualizar manualmente el stock cuando se realicen ventas en el local o ajustes internos.</li>
+          <li>Revisar stock, precios y registros observados antes de publicar.</li>
+          <li>Definir métodos de entrega, política de retiro, coordinación de envíos y condiciones comerciales.</li>
+          <li>Gestionar facturación, preparación de pedidos y atención posterior a la venta.</li>
+          <li>Proveer o crear la cuenta de Mercado Pago y entregar las credenciales necesarias para la integración de Checkout Pro.</li>
+          <li>Contratar o abonar dominio, hosting y servicios externos necesarios.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Rondas de cambios y pruebas</h2>
+      <div class="box"><p>El presupuesto incluye hasta <strong>2 rondas de ajustes</strong> sobre el diseño y contenido inicial presentado, más una instancia de prueba para catálogo, carrito, checkout, Mercado Pago Checkout Pro y actualización de precios.</p><p class="terms">Cambios adicionales, modificaciones estructurales, nuevas funcionalidades o ajustes derivados de archivos que no respeten la plantilla serán cotizados aparte.</p></div>
+    </section>
+
+    <section class="section">
+      <h2>Mantenimiento opcional</h2>
+      <div class="box"><p>Finalizado el proyecto, el cliente podrá solicitar mantenimiento, modificaciones o asistencia técnica bajo modalidad mensual o por trabajo puntual.</p><ul><li>Actualizaciones menores de contenido.</li><li>Asistencia para carga o actualización de productos.</li><li>Corrección de errores posteriores a la entrega.</li><li>Mejoras futuras del sitio.</li><li>Soporte para cambios en la estructura del Excel o nuevas reglas de actualización.</li></ul><p class="terms">El mantenimiento no forma parte del presente presupuesto y deberá acordarse por separado.</p></div>
+    </section>
+
+    <section class="section">
+      <h2>Validez y condiciones generales</h2>
+      <div class="box terms"><ul><li>El presupuesto tiene una validez de <strong>7 días corridos</strong> desde la fecha de emisión.</li><li>El desarrollo comenzará una vez aprobado el presupuesto y abonado el anticipo correspondiente.</li><li>Las funcionalidades no especificadas expresamente no se consideran incluidas.</li><li>Los costos de servicios externos, dominio, hosting, licencias, comisiones de Mercado Pago o herramientas pagas son responsabilidad del cliente.</li><li>La entrega final se realizará una vez completado el desarrollo y abonado el saldo pendiente.</li><li>La carga inicial y el actualizador de precios requieren que el archivo respete la estructura acordada.</li></ul></div>
+    </section>
+
+    <section class="signature"><div>Aprobación del cliente</div><div>Firma / Responsable del desarrollo</div></section>
+
+    <footer class="footer"><div><strong>Presupuesto generado para:</strong><br />Infinito Libros</div><div><strong>Contacto del proveedor:</strong><br />sanchezjoelgonzalo@gmail.com</div></footer>
+  </main>
+</body>
+</html>

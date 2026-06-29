@@ -1,0 +1,19 @@
+VALIDACION RAPIDA ANTES DE SUBIR A GITHUB
+
+1) index.html debe empezar con:
+<!DOCTYPE html>
+
+2) script.js debe empezar con:
+// Mockup estatico para libreria con eCommerce inicial simulado.
+
+3) styles.css debe empezar con:
+:root{
+
+4) presupuesto_infinito_libros_catalogo_excel_precios.html debe empezar con:
+<!DOCTYPE html>
+
+5) El archivo actualizacion_precios_isbn.csv debe estar dentro de plantillas/, no reemplazar index.html.
+
+6) El archivo catalogo.json debe estar dentro de data/, no en la raiz.
+
+Si GitHub muestra ISBN;Precio dentro de index.html, se subio mal el archivo.

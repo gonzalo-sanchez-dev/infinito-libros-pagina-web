@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Mockup navegable para librería local con eCommerce inicial, carrito simulado, catálogo administrable y presupuesto integrado." />
+  <meta name="theme-color" content="#153226" />
+  <title>Infinito Libros | Librería local y eCommerce inicial</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a class="brand" href="#inicio" aria-label="Ir al inicio">
+        <span class="brand-mark">IL</span>
+        <span>
+          <strong>Infinito Libros</strong>
+          <small>Librería online inicial</small>
+        </span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="main-nav" aria-label="Navegación principal">
+        <a href="#inicio" data-route-link="inicio">Inicio</a>
+        <a href="#catalogo" data-route-link="catalogo">Tienda</a>
+        <a href="#presupuesto" data-route-link="presupuesto">Presupuesto</a>
+        <a href="#contacto" data-route-link="contacto">Contacto</a>
+      </nav>
+
+      <button class="cart-nav-button" id="cartButton" type="button" aria-label="Abrir carrito">
+        Carrito <span id="cartCount">0</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <section class="page-view is-active" data-route="inicio">
+      <div class="hero">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">Librería de barrio · tienda online inicial · atención cercana</p>
+            <h1>Libros para elegir, comprar y retirar en la librería.</h1>
+            <p class="hero-text">
+              Un espacio cálido para encontrar novelas, clásicos, libros infantiles,
+              material escolar, agendas y productos de papelería seleccionados con carrito de compra inicial.
+            </p>
+
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#catalogo">Comprar online</a>
+              <a class="btn btn-ghost" id="homeWhatsapp" href="#" target="_blank" rel="noopener">Consultar por WhatsApp</a>
+            </div>
+
+            <div class="hero-note">
+              <span>Carrito de compras</span>
+              <span>Actualización por ISBN</span>
+              <span>Mercado Pago Checkout Pro</span>
+            </div>
+          </div>
+
+          <div class="hero-visual" aria-hidden="true">
+            <div class="book-stack">
+              <div class="book book-a"></div>
+              <div class="book book-b"></div>
+              <div class="book book-c"></div>
+              <div class="book-cover-main">
+                <span>Lecturas</span>
+                <strong>de temporada</strong>
+                <small>selección de la librería</small>
+              </div>
+            </div>
+            <div class="floating-card">
+              <strong>+5.000</strong>
+              <span>títulos en tienda</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <section class="section about-section">
+        <div class="container split">
+          <div>
+            <p class="eyebrow">Sobre la librería</p>
+            <h2>Una librería local con catálogo cuidado y venta online inicial.</h2>
+          </div>
+          <div class="copy-block">
+            <p>
+              Infinito Libros acompaña a lectores, familias y estudiantes con recomendaciones personalizadas,
+              productos seleccionados y una experiencia simple: buscás el libro, lo agregás al carrito y completás un pedido inicial.
+            </p>
+            <p>
+              Esta demo representa una web profesional para pequeños negocios, preparada para mostrar el flujo de compra.
+              En producción, los pedidos y pagos requieren backend, base de datos e integración segura con Mercado Pago Checkout Pro.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container section-head">
+          <div>
+            <p class="eyebrow">Selección destacada</p>
+            <h2>Productos destacados</h2>
+          </div>
+          <a class="link-arrow" href="#catalogo">Ver tienda completa</a>
+        </div>
+        <div class="container">
+          <div class="product-grid featured-grid" id="featuredGrid"></div>
+        </div>
+      </section>
+
+      <section class="section soft-section">
+        <div class="container section-head">
+          <div>
+            <p class="eyebrow">Categorías</p>
+            <h2>Explorá por tipo de producto</h2>
+          </div>
+        </div>
+        <div class="container category-grid" id="homeCategories"></div>
+      </section>
+
+      <section class="section">
+        <div class="container benefits-grid">
+          <article class="benefit-card">
+            <span>01</span>
+            <h3>Atención personalizada</h3>
+            <p>Carrito inicial con stock publicado y checkout básico para venta online.</p>
+          </article>
+          <article class="benefit-card">
+            <span>02</span>
+            <h3>Libros seleccionados</h3>
+            <p>Novedades, clásicos, infantiles, escolares y recomendados por la librería.</p>
+          </article>
+          <article class="benefit-card">
+            <span>03</span>
+            <h3>Retiro o envío coordinado</h3>
+            <p>Checkout preparado para retiro en local o envío a coordinar según disponibilidad.</p>
+          </article>
+          <article class="benefit-card">
+            <span>04</span>
+            <h3>Catálogo flexible</h3>
+            <p>Preparado para cargar productos desde Excel, CSV o JSON en modalidad estática.</p>
+          </article>
+        </div>
+      </section>
+    </section>
+
+    <section class="page-view" data-route="catalogo">
+      <div class="page-hero catalog-hero">
+        <div class="container">
+          <p class="eyebrow">Tienda online inicial</p>
+          <h1>Elegí libros y armá tu pedido.</h1>
+          <p>
+            Esta demo muestra un carrito y checkout inicial. El stock se plantea como dato administrado manualmente por la librería.
+            En producción, los pagos online se integrarían con Mercado Pago Checkout Pro y el pedido quedaría registrado en una base de datos.
+          </p>
+        </div>
+      </div>
+
+      <section class="section catalog-layout">
+        <div class="container">
+          <details class="import-panel">
+            <summary>
+              <span>
+                <strong>Modo demo: importar catálogo desde Excel, CSV o JSON</strong>
+                <small>Actualiza la grilla en este navegador y permite descargar el JSON para publicar.</small>
+              </span>
+              <span class="summary-icon">+</span>
+            </summary>
+
+            <div class="import-content">
+              <div class="import-instructions">
+                <p>
+                  Usá la plantilla incluida en el ZIP. Columnas esperadas:
+                  <strong>ISBN, Titulo, Autor, Categoria, Precio, Descripcion, Imagen, Destacado</strong>.
+                </p>
+                <p>
+                  En un sitio estático, la importación desde el navegador no reemplaza automáticamente archivos del hosting.
+                  Para publicación real, se importa el Excel, se descarga el JSON actualizado y se sube como
+                  <code>data/catalogo.json</code>.
+                </p>
+              </div>
+
+              <div class="import-actions">
+                <label class="file-picker">
+                  <input type="file" id="catalogFile" accept=".xlsx,.csv,.json" />
+                  <span>Seleccionar archivo</span>
+                </label>
+                <button class="btn btn-secondary" type="button" id="downloadJsonBtn">Descargar JSON actualizado</button>
+                <button class="btn btn-light" type="button" id="resetCatalogBtn">Restaurar catálogo demo</button>
+              </div>
+
+              <div class="import-status" id="importStatus" role="status"></div>
+            </div>
+          </details>
+
+
+
+          <details class="import-panel price-update-panel">
+            <summary>
+              <span>
+                <strong>Modo demo: actualizar precios por ISBN</strong>
+                <small>Subí una planilla con ISBN y Precio para actualizar libros ya existentes en el catálogo.</small>
+              </span>
+              <span class="summary-icon">+</span>
+            </summary>
+
+            <div class="import-content">
+              <div class="import-instructions">
+                <p>
+                  Esta herramienta simula el flujo mensual presupuestado: el archivo debe contener columnas
+                  <strong>ISBN</strong> y <strong>Precio</strong>. El sistema busca cada ISBN existente y actualiza el precio.
+                </p>
+                <p>
+                  Si el ISBN no existe, no se crea un libro nuevo. Esos casos se informan como no encontrados para revisión.
+                </p>
+              </div>
+
+              <div class="import-actions">
+                <label class="file-picker">
+                  <input type="file" id="priceFile" accept=".xlsx,.csv,.json" />
+                  <span>Actualizar precios</span>
+                </label>
+                <button class="btn btn-light" type="button" id="downloadPriceTemplateBtn">Descargar plantilla CSV</button>
+              </div>
+
+              <div class="import-status" id="priceUpdateStatus" role="status"></div>
+            </div>
+          </details>
+
+          <div class="catalog-tools">
+            <div class="search-field">
+              <label for="searchInput">Buscar por título o autor</label>
+              <input id="searchInput" type="search" placeholder="Ej: Austen, infantil, agenda..." autocomplete="off" />
+            </div>
+
+            <div class="select-field">
+              <label for="categoryFilter">Categoría</label>
+              <select id="categoryFilter"></select>
+            </div>
+
+            <div class="select-field">
+              <label for="sortSelect">Ordenar</label>
+              <select id="sortSelect">
+                <option value="featured">Destacados primero</option>
+                <option value="title-asc">Título A-Z</option>
+                <option value="price-asc">Menor precio</option>
+                <option value="price-desc">Mayor precio</option>
+              </select>
+            </div>
+
+            <div class="select-field compact">
+              <label for="pageSizeSelect">Por página</label>
+              <select id="pageSizeSelect">
+                <option value="25" selected>25</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="catalog-meta">
+            <p id="resultsCount">Mostrando productos</p>
+            <p id="catalogSource">Catálogo demo</p>
+          </div>
+
+          <div class="product-grid catalog-grid" id="catalogGrid"></div>
+
+          <nav class="pagination" id="pagination" aria-label="Paginación del catálogo"></nav>
+
+          <div class="catalog-empty" id="emptyState" hidden>
+            <h3>No se encontraron productos</h3>
+            <p>Probá con otra búsqueda o quitá el filtro de categoría.</p>
+          </div>
+        </div>
+      </section>
+    </section>
+
+
+
+    <section class="page-view" data-route="presupuesto">
+      <div class="page-hero budget-hero">
+        <div class="container">
+          <p class="eyebrow">Propuesta comercial</p>
+          <h1>Presupuesto eCommerce inicial.</h1>
+          <p>
+            Propuesta para desarrollar la web de Infinito Libros como una tienda online inicial, con catálogo administrable,
+            carrito de compras, checkout básico, stock administrado manualmente e integración inicial con Mercado Pago Checkout Pro.
+          </p>
+          <div class="hero-actions budget-actions">
+            <button class="btn btn-primary" type="button" onclick="window.print()">Guardar / imprimir PDF</button>
+            <a class="btn btn-ghost" href="presupuesto_infinito_libros_catalogo_excel_precios.html" target="_blank" rel="noopener">Abrir versión imprimible</a>
+          </div>
+        </div>
+      </div>
+
+      <section class="section budget-layout">
+        <div class="container">
+          <div class="budget-summary-card">
+            <span class="budget-badge">Propuesta eCommerce inicial</span>
+            <div>
+              <p class="eyebrow">Total del proyecto</p>
+              <h2>USD 1.200</h2>
+              <p>
+                Desarrollo inicial de tienda online. No incluye hosting, dominio, mantenimiento mensual, comisiones de medios de pago ni costos de envío.
+              </p>
+            </div>
+          </div>
+
+          <div class="budget-grid three">
+            <article class="budget-feature">
+              <span>01</span>
+              <h3>Catálogo administrable</h3>
+              <p>Catálogo navegable con buscador, filtros, fichas de producto, carga masiva inicial y actualización de precios por ISBN.</p>
+            </article>
+            <article class="budget-feature">
+              <span>02</span>
+              <h3>Carrito y checkout</h3>
+              <p>Carrito de compras, formulario de datos del comprador, método de entrega y generación de pedido inicial.</p>
+            </article>
+            <article class="budget-feature">
+              <span>03</span>
+              <h3>Mercado Pago Checkout Pro</h3>
+              <p>Integración inicial con Mercado Pago Checkout Pro para pagos con tarjeta de débito, crédito y otros medios disponibles en Mercado Pago.</p>
+            </article>
+          </div>
+
+          <div class="budget-card">
+            <div class="section-head compact-head">
+              <div>
+                <p class="eyebrow">Detalle económico</p>
+                <h2>Inversión del proyecto</h2>
+              </div>
+            </div>
+
+            <div class="budget-table-wrap">
+              <table class="budget-table">
+                <thead>
+                  <tr>
+                    <th>Concepto</th>
+                    <th>Detalle</th>
+                    <th>Importe</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Diseño y desarrollo de tienda online inicial</td>
+                    <td>Sitio responsive con inicio, tienda, fichas de producto, contacto, ubicación, redes sociales y estructura preparada para venta online.</td>
+                    <td class="money">USD 500</td>
+                  </tr>
+                  <tr>
+                    <td>Catálogo, carga masiva y actualización por ISBN</td>
+                    <td>Plantilla de carga inicial, importación del catálogo entregado por el cliente y actualizador mensual de precios por ISBN.</td>
+                    <td class="money">USD 250</td>
+                  </tr>
+                  <tr>
+                    <td>Carrito de compras y checkout básico</td>
+                    <td>Agregar/quitar productos, cálculo de totales, datos del comprador, retiro en local o envío a coordinar y generación de pedido.</td>
+                    <td class="money">USD 300</td>
+                  </tr>
+                  <tr>
+                    <td>Integración con Mercado Pago Checkout Pro</td>
+                    <td>Configuración inicial del flujo de pago con redirección al entorno seguro de Mercado Pago. Permite operar con débito, crédito y otros medios disponibles en Mercado Pago.</td>
+                    <td class="money">USD 150</td>
+                  </tr>
+                  <tr class="total-row">
+                    <td colspan="2">Total del proyecto</td>
+                    <td class="money">USD 1.200</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="budget-grid two">
+            <article class="budget-card success-card">
+              <p class="eyebrow">Incluye</p>
+              <h2>Alcance principal</h2>
+              <ul>
+                <li>Diseño visual profesional adaptado a una librería.</li>
+                <li>Desarrollo responsive para celular, tablet y computadora.</li>
+                <li>Tienda con catálogo, buscador, filtros y paginación para catálogos grandes.</li>
+                <li>Ficha de producto con precio, ISBN, descripción y stock publicado.</li>
+                <li>Carrito de compras inicial con edición de cantidades y cálculo de totales.</li>
+                <li>Checkout básico con datos del comprador y método de entrega.</li>
+                <li>Flujo inicial de pedido y registro básico para seguimiento operativo.</li>
+                <li>Control básico de stock administrado manualmente por la librería.</li>
+                <li>Integración inicial con Mercado Pago Checkout Pro mediante redirección al entorno seguro de Mercado Pago.</li>
+                <li>Plantilla para carga masiva inicial del catálogo.</li>
+                <li>Actualizador reutilizable de precios por ISBN.</li>
+                <li>SEO básico y publicación inicial en el hosting definido.</li>
+                <li>Capacitación breve de uso del catálogo, pedidos y plantillas.</li>
+              </ul>
+            </article>
+
+            <article class="budget-card warning-card">
+              <p class="eyebrow">No incluye</p>
+              <h2>Fuera del alcance</h2>
+              <ul>
+                <li>Facturación electrónica automática o integración directa con ARCA.</li>
+                <li>Integración logística automática con correo, etiquetas o seguimiento.</li>
+                <li>Sincronización automática en tiempo real con ERP, proveedores o ventas del local físico.</li>
+                <li>Panel administrativo avanzado, roles complejos o reportes de gestión.</li>
+                <li>Programa de cupones, puntos, usuarios registrados o historial de compras.</li>
+                <li>Búsqueda, descarga o edición manual de imágenes de libros.</li>
+                <li>Limpieza avanzada, normalización editorial o corrección masiva del Excel.</li>
+                <li>Hosting, dominio, correos, certificados, servicios pagos o mantenimiento mensual.</li>
+                <li>Comisiones de Mercado Pago, costos de envío o impuestos propios de la operación comercial.</li>
+                <li>Configuración avanzada de cuotas, promociones bancarias, conciliación automática o múltiples pasarelas de pago.</li>
+                <li>Integración con MODO, Payway u otros medios de pago adicionales.</li>
+              </ul>
+            </article>
+          </div>
+
+          <div class="budget-grid two">
+            <article class="budget-card">
+              <p class="eyebrow">Criterio operativo</p>
+              <h2>Stock administrado manualmente</h2>
+              <p>
+                La tienda se plantea con control básico de stock actualizado por el equipo de la librería. Cuando se realice una venta en el local, el personal deberá ajustar el stock para mantener la web alineada con la disponibilidad real.
+              </p>
+              <p class="budget-note">
+                No se incluye sincronización automática con caja, ERP o ventas del local físico; esa mejora puede cotizarse en una etapa posterior.
+              </p>
+            </article>
+
+            <article class="budget-card">
+              <p class="eyebrow">Pagos</p>
+              <h2>Mercado Pago Checkout Pro</h2>
+              <p>
+                El flujo de pago incluido se plantea mediante Mercado Pago Checkout Pro, redirigiendo al comprador al entorno seguro de Mercado Pago para abonar con débito, crédito u otros medios disponibles.
+              </p>
+              <p class="budget-note">
+                Webhooks avanzados, conciliación automática, promociones especiales, MODO/Payway u otras pasarelas quedan fuera del alcance inicial y pueden cotizarse como etapa posterior.
+              </p>
+            </article>
+          </div>
+
+          <div class="budget-card">
+            <p class="eyebrow">Condiciones</p>
+            <h2>Forma de pago y plazo</h2>
+            <div class="budget-grid two no-margin">
+              <div>
+                <h3>Forma de pago</h3>
+                <ul>
+                  <li><strong>50% al aprobar el presupuesto:</strong> USD 600.</li>
+                  <li><strong>50% antes de la publicación final:</strong> USD 600.</li>
+                  <li>La publicación se realiza una vez acreditado el pago final.</li>
+                </ul>
+              </div>
+              <div>
+                <h3>Plazo estimado</h3>
+                <p>
+                  Desarrollo estimado de <strong>25 a 35 días hábiles</strong>, contados desde la aprobación,
+                  acreditación del anticipo y entrega del material necesario.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="budget-card terms-card">
+            <p class="eyebrow">Condiciones generales</p>
+            <ul>
+              <li>El desarrollo comienza una vez aprobado el presupuesto y abonado el anticipo.</li>
+              <li>Las funcionalidades no especificadas expresamente no se consideran incluidas.</li>
+              <li>La carga inicial y el actualizador requieren que el Excel respete la estructura acordada.</li>
+              <li>La actualización manual del stock, preparación de pedidos, envíos y facturación son responsabilidad operativa del cliente.</li>
+              <li>El presupuesto tiene una validez de 7 días corridos desde la fecha de emisión.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <section class="page-view" data-route="contacto">
+      <div class="page-hero">
+        <div class="container">
+          <p class="eyebrow">Contacto</p>
+          <h1>Visitá la librería o consultá por WhatsApp.</h1>
+          <p>Datos ficticios para demo comercial. El formulario es visual y no realiza envíos reales.</p>
+        </div>
+      </div>
+
+      <section class="section">
+        <div class="container contact-grid">
+          <div class="contact-cards">
+            <article class="contact-card">
+              <span>📍</span>
+              <div>
+                <h3>Dirección</h3>
+                <p>Av. Los Lectores 1245, Centro, Córdoba</p>
+              </div>
+            </article>
+            <article class="contact-card">
+              <span>🕘</span>
+              <div>
+                <h3>Horarios</h3>
+                <p>Lunes a viernes de 9:00 a 13:00 y 17:00 a 20:30<br />Sábados de 9:30 a 13:00</p>
+              </div>
+            </article>
+            <article class="contact-card">
+              <span>💬</span>
+              <div>
+                <h3>WhatsApp</h3>
+                <p>+54 9 351 000 0000</p>
+                <a id="contactWhatsapp" href="#" target="_blank" rel="noopener">Enviar consulta</a>
+              </div>
+            </article>
+            <article class="contact-card">
+              <span>◎</span>
+              <div>
+                <h3>Redes sociales</h3>
+                <p>@infinitolibros · Facebook · Instagram</p>
+              </div>
+            </article>
+          </div>
+
+          <div class="map-card">
+            <div class="map-fake">
+              <span>Mapa simulado</span>
+              <strong>Infinito Libros</strong>
+              <small>Ubicación de ejemplo</small>
+            </div>
+          </div>
+
+          <form class="contact-form" id="mockForm">
+            <h2>Formulario de consulta</h2>
+            <p>Mockup visual sin envío real.</p>
+            <label>
+              Nombre
+              <input type="text" placeholder="Tu nombre" />
+            </label>
+            <label>
+              Email o teléfono
+              <input type="text" placeholder="Tu contacto" />
+            </label>
+            <label>
+              Consulta
+              <textarea rows="5" placeholder="Contanos qué libro o producto estás buscando"></textarea>
+            </label>
+            <button class="btn btn-primary" type="submit">Enviar consulta</button>
+            <div class="form-status" id="formStatus"></div>
+          </form>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <a class="brand footer-brand" href="#inicio">
+          <span class="brand-mark">IL</span>
+          <span>
+            <strong>Infinito Libros</strong>
+            <small>Librería online inicial</small>
+          </span>
+        </a>
+        <p>Mockup navegable para sitio web comercial con eCommerce inicial y presupuesto integrado.</p>
+      </div>
+
+      <div>
+        <h3>Navegación</h3>
+        <a href="#inicio">Inicio</a>
+        <a href="#catalogo">Catálogo</a>
+        <a href="#presupuesto">Presupuesto</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+
+      <div>
+        <h3>Redes</h3>
+        <a href="#">Instagram</a>
+        <a href="#">Facebook</a>
+        <a href="#">WhatsApp</a>
+      </div>
+
+      <div>
+        <h3>Alcance</h3>
+        <p>Demo con carrito y checkout simulado. Los pagos reales, pedidos persistentes, administración de stock y backend se implementan en producción.</p>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <span>© <span id="year"></span> Infinito Libros. Todos los derechos reservados.</span>
+      <span>Sitio estático preparado para hosting web.</span>
+    </div>
+  </footer>
+
+  <a class="floating-whatsapp" id="floatingWhatsapp" href="#" target="_blank" rel="noopener" aria-label="Consultar por WhatsApp">WhatsApp</a>
+
+
+
+  <aside class="cart-drawer" id="cartDrawer" aria-hidden="true" aria-label="Carrito de compras">
+    <div class="cart-backdrop" data-cart-close></div>
+    <section class="cart-panel" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
+      <button class="cart-close" type="button" aria-label="Cerrar carrito" data-cart-close>×</button>
+      <div class="cart-head">
+        <p class="eyebrow">Pedido online inicial</p>
+        <h2 id="cartTitle">Carrito</h2>
+        <p>Demo funcional del flujo de pedido. En producción, el pedido se guardaría en una base de datos y el pago se procesaría con Mercado Pago Checkout Pro.</p>
+      </div>
+
+      <div class="cart-items" id="cartItems"></div>
+      <div class="cart-empty" id="cartEmpty">Todavía no agregaste productos al carrito.</div>
+
+      <div class="cart-total-row">
+        <span>Total estimado</span>
+        <strong id="cartTotal">$0</strong>
+      </div>
+
+      <form class="checkout-form" id="checkoutForm">
+        <h3>Datos para el pedido</h3>
+        <label>
+          Nombre y apellido
+          <input type="text" id="checkoutName" required placeholder="Nombre del comprador" />
+        </label>
+        <label>
+          Teléfono o WhatsApp
+          <input type="text" id="checkoutPhone" required placeholder="Ej: +54 9 351..." />
+        </label>
+        <label>
+          Entrega
+          <select id="checkoutDelivery">
+            <option value="Retiro en local">Retiro en local</option>
+            <option value="Envío a coordinar">Envío a coordinar</option>
+          </select>
+        </label>
+        <label>
+          Medio de pago
+          <select id="checkoutPayment">
+            <option value="Mercado Pago Checkout Pro">Mercado Pago Checkout Pro</option>
+            <option value="Transferencia">Transferencia</option>
+            <option value="Pago en local">Pago en local</option>
+          </select>
+        </label>
+        <button class="btn btn-primary" type="submit">Generar pedido simulado</button>
+        <div class="checkout-status" id="checkoutStatus" role="status"></div>
+      </form>
+    </section>
+  </aside>
+
+  <div class="modal" id="productModal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-backdrop" data-close-modal></div>
+    <article class="modal-card" role="document">
+      <button class="modal-close" type="button" aria-label="Cerrar detalle" data-close-modal>×</button>
+      <div id="modalContent"></div>
+    </article>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
